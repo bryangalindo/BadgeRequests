@@ -1,6 +1,6 @@
 from azure.cosmosdb.table.tableservice import TableService
 from azure.cosmosdb.table.models import Entity
-from config import settings
+from .config import settings
 import csv
 
 # USE THIS FILE TO IMPORT THE BADGE CSV TO COSMOS EMULATOR
