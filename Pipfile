@@ -8,6 +8,7 @@ fastapi = {extras = ["all"], version = "*"}
 azure-cosmosdb-table = "*"
 python-dotenv = "*"
 pytest = "*"
+inquirer = "*"
 
 [dev-packages]
 
