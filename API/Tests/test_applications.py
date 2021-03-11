@@ -39,10 +39,10 @@ def test_get_application2():
 def test_post_application():
     response = client.post(
         "/api/v1/applications/",
-        json={"email": "test3@test.com", "requests": [{"email": "test3@test.com", "badgeID": "1", "category": "Milestone"}, {
-            "email": "test3@test.com", "badgeID": "2", "category": "Milestone"}]}
+        json={"email": "test2@test.com", "requests": [{"email": "test2@test.com", "badgeID": "4", "category": "Milestone"}, {
+            "email": "test2@test.com", "badgeID": "3", "category": "Milestone"}]}
     )
     assert response.status_code == 200
     data = response.json()
-    assert data == {"email": "test3@test.com", "requests": [{"email": "test3@test.com", "badgeID": "1", "category": "Milestone"}, {
-        "email": "test3@test.com", "badgeID": "2", "category": "Milestone"}]}
+    assert data == {"email": "test2@test.com", "requests": [{"email": "test2@test.com", "badgeID": "4", "category": "Milestone"}, {
+        "email": "test2@test.com", "badgeID": "3", "category": "Milestone"}]}
