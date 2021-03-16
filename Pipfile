@@ -9,6 +9,8 @@ azure-cosmosdb-table = "*"
 python-dotenv = "*"
 pytest = "*"
 inquirer = "*"
+authlib = "*"
+httpx = "*"
 
 [dev-packages]
 
