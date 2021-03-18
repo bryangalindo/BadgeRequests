@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from Routers import badges, requests
+from Routers import badges, requests, applications
 
 
 app = FastAPI()
@@ -20,6 +20,7 @@ app.add_middleware(
 
 app.include_router(badges.router)
 app.include_router(requests.router)
+app.include_router(applications.router)
 
 
 @app.get("/")

@@ -4,24 +4,31 @@ from main import app
 
 client = TestClient(app)
 
-requests= [
+
+test_application_dict = {
+            "PartitionKey": "test4@test.com", 
+            "RowKey": "6", 
+            "requests": [
                 {
-                    "PartitionKey": "test1@test.com", "RowKey": "1", "ApplicationID": "1", 
+                    "PartitionKey": "test3@test.com", "RowKey": "6", "ApplicationID": "6", 
                     "badgeID": "1", "category": "Milestone", "approved": False, "approved_by": ""
                     },
                 {
-                    "PartitionKey": "test1@test.com", "RowKey": "2", "ApplicationID": "1", 
-                    "badgeID": "2", "category": "Milestone", "approved": True, "approved_by": "Tim Allen"
+                    "PartitionKey": "test7@test.com", "RowKey": "7", "ApplicationID": "6", 
+                    "badgeID": "1", "category": "Milestone", "approved": False, "approved_by": ""
                     },
                 ]
+            }
 
 def test_post_application():
-    response = client.post(
-        "/api/v1/applications/", 
-        json={"email": "test3@test.com", "RowKey": "3"}
-        )
+    response = client.post("/api/v1/applications/", json=test_application_dict)
     assert response.status_code == 200
-    assert response.json() == {"email": "test3@test.com", "RowKey": "3"}
+    assert response.json() == test_application_dict
+    
+def test_delete_application():
+    response = client.delete("/api/v1/applications/6")
+    assert response.status_code == 200
+    assert response.json() == {"Details": "Application deleted"}
 
 
 def test_read_all_applications():
