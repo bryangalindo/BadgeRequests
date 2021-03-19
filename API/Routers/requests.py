@@ -1,8 +1,9 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from Data.connection import Table
+from dependencies import get_current_user
 
-
-router = APIRouter(prefix="/api/v1/requests",  tags=["requests"])
+router = APIRouter(prefix="/api/v1/requests",
+                   tags=["requests"], dependencies=[Depends(get_current_user)])
 
 
 @router.get("/")

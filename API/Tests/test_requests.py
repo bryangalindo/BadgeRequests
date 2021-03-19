@@ -1,7 +1,15 @@
+from fastapi import Depends
 from fastapi.testclient import TestClient
 from main import app
+from dependencies import get_current_user
 
 client = TestClient(app)
+
+
+async def override():
+    return None
+
+app.dependency_overrides[get_current_user] = override
 
 
 def test_get_requests():
