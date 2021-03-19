@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from Routers import badges, requests
+from Routers import badges, requests, applications, auth
 from typing import Optional
 from starlette.requests import Request
 from starlette.middleware.sessions import SessionMiddleware
@@ -30,6 +30,7 @@ app.add_middleware(SessionMiddleware, secret_key='!secret')
 
 app.include_router(badges.router)
 app.include_router(requests.router)
+app.include_router(auth.router)
 
 config = Config('.env')
 oauth = OAuth(config)
@@ -49,21 +50,7 @@ async def root():
     return {"message": "Hello World"}
 
 
-@app.get('/test')
-async def home(request: Request):
-    user = request.session.get('user')
-    if user is not None:
-        email = user['email']
-        html = (
-            f'<pre>Email: {email}</pre><br>'
-            '<a href="/docs">documentation</a><br>'
-            '<a href="/logout">logout</a>'
-        )
-        return HTMLResponse(html)
-    return HTMLResponse('<a href="/login">login</a>')
-
-
-@app.get('/login', tags=['authentication'])
+@app.get('/login', tags=['auth'])
 async def login(request: Request):
     # Redirect Google OAuth back to our application
     redirect_uri = request.url_for('auth')
@@ -80,13 +67,13 @@ async def auth(request: Request):
     # Save the user
     request.session['user'] = dict(user)
 
-    return RedirectResponse(url='/test')
+    return RedirectResponse(url='http://localhost:5000')
 
 
 # Tag it as "authentication" for our docs
-@app.get('/logout', tags=['authentication'])
+@app.get('/logout', tags=['auth'])
 async def logout(request: Request):
     # Remove the user
     request.session.pop('user', None)
 
-    return RedirectResponse(url='/test')
+    return RedirectResponse(url='http://localhost:5000')
