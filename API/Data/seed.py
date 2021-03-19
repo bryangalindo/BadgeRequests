@@ -53,12 +53,20 @@ users = [
 ]
 
 requests = [
-    {"PartitionKey": "test1@test.com", "RowKey": "1", "badgeID": "1",
-     "category": "Milestone", "approved": False, "approved_by": ""},
-    {"PartitionKey": "test1@test.com", "RowKey": "2", "badgeID": "2",
-     "category": "Milestone", "approved": True, "approved_by": "Tim Allen"},
-    {"PartitionKey": "test2@test.com", "RowKey": "3", "badgeID": "1",
-     "category": "Milestone", "approved": True, "approved_by": "Tim Allen"},
-    {"PartitionKey": "test2@test.com", "RowKey": "4", "badgeID": "2",
-     "category": "Milestone", "approved": False, "approved_by": ""}
+    {
+        "PartitionKey": "test1@test.com", "RowKey": "1", "ApplicationID": "1", 
+        "badgeID": "1", "category": "Milestone", "approved": False, "approved_by": ""
+    },
+    {
+        "PartitionKey": "test1@test.com", "RowKey": "2", "ApplicationID": "1", 
+        "badgeID": "2", "category": "Milestone", "approved": True, "approved_by": "Tim Allen"
+    },
+    {
+        "PartitionKey": "test2@test.com", "RowKey": "3", "ApplicationID": "2", 
+        "badgeID": "1", "category": "Milestone", "approved": True, "approved_by": "Tim Allen"
+    },
+    {
+        "PartitionKey": "test2@test.com", "RowKey": "4", "ApplicationID": "2",
+        "badgeID": "2", "category": "Milestone", "approved": False, "approved_by": ""
+    },
 ]

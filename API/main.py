@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+
 from Routers import badges, requests, applications, auth
 from typing import Optional
 from starlette.requests import Request
@@ -30,6 +31,7 @@ app.add_middleware(SessionMiddleware, secret_key='!secret')
 
 app.include_router(badges.router)
 app.include_router(requests.router)
+app.include_router(applications.router)
 app.include_router(auth.router)
 
 config = Config('.env')
