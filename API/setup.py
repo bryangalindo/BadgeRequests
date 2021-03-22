@@ -1,6 +1,6 @@
 from Data.connection import Table
 import inquirer
-from Data.seed import badges, applications, users, requests
+from Data.seed import badges, applications, users, requests, admins
 
 
 def table_prompt():
@@ -8,9 +8,9 @@ def table_prompt():
         inquirer.Checkbox('tables',
                           message="Choose which tables to create",
                           choices=['badges', 'applications', 'users',
-                                   'requests'],
+                                   'requests', 'admins'],
                           default=['badges', 'applications', 'users',
-                                   'requests']),
+                                   'requests', 'admins']),
     ]
     answers = inquirer.prompt(questions)
 
@@ -46,6 +46,13 @@ def table_prompt():
         except Exception as e:
             print(e)
 
+    if 'admins' in answers['tables']:
+        admin_table = Table('admins')
+        try:
+            admin_table.create_table()
+            print('The admins table has been created.')
+        except Exception as e:
+            print(e)
     print('Table setup complete!')
 
 
@@ -54,9 +61,9 @@ def seed_prompt():
         inquirer.Checkbox('seed',
                           message="Choose which tables to seed",
                           choices=['badges', 'applications', 'users',
-                                   'requests'],
+                                   'requests', 'admins'],
                           default=['badges', 'applications', 'users',
-                                   'requests']),
+                                   'requests', 'admins']),
     ]
     answers = inquirer.prompt(questions)
 
@@ -96,6 +103,14 @@ def seed_prompt():
         except Exception as e:
             print(e)
 
+    if 'admins' in answers['seed']:
+        admin_table = Table('admins')
+        try:
+            for admin in admins:
+                admin_table.overwrite(admin)
+            print('The admins table has been seeded.')
+        except Exception as e:
+            print(e)
     print('Table seeding complete!')
 
 

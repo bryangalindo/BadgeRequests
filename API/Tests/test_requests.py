@@ -6,12 +6,6 @@ from dependencies import get_current_user
 client = TestClient(app)
 
 
-async def override():
-    return None
-
-app.dependency_overrides[get_current_user] = override
-
-
 def test_get_requests():
     response = client.get("/api/v1/requests/")
     assert response.status_code == 200
