@@ -1,5 +1,7 @@
+from fastapi import Depends
 from fastapi.testclient import TestClient
 from main import app
+from dependencies import get_current_user
 
 client = TestClient(app)
 

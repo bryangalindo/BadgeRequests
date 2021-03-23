@@ -1,7 +1,16 @@
+from fastapi import Depends
 from fastapi.testclient import TestClient
 from main import app
+from dependencies import get_current_user, get_current_admin
 
 client = TestClient(app)
+
+
+async def override():
+    return None
+
+app.dependency_overrides[get_current_user] = override
+app.dependency_overrides[get_current_admin] = override
 
 
 def test_get_badges():
