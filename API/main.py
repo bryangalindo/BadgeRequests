@@ -1,17 +1,19 @@
+import json
+from typing import Optional
+
+from authlib.integrations.starlette_client import OAuth
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-
-from Routers import badges, requests, applications, auth
-from typing import Optional
+import requests as req
 from starlette.requests import Request
 from starlette.middleware.sessions import SessionMiddleware
 from starlette.responses import HTMLResponse, JSONResponse, RedirectResponse
 from starlette.config import Config
 
-from authlib.integrations.starlette_client import OAuth
-
 from Data.connection import Table
 from dependencies import get_current_user
+from Routers import badges, requests, applications, auth
+
 
 app = FastAPI()
 
@@ -27,6 +29,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 app.add_middleware(SessionMiddleware, secret_key='!secret')
 
 app.include_router(badges.router)
@@ -38,6 +41,7 @@ config = Config('.env')
 oauth = OAuth(config)
 
 CONF_URL = 'https://accounts.google.com/.well-known/openid-configuration'
+
 oauth.register(
     name='google',
     server_metadata_url=CONF_URL,
@@ -56,7 +60,7 @@ async def root():
 async def login(request: Request):
     # Redirect Google OAuth back to our application
     redirect_uri = request.url_for('auth')
-
+    
     return await oauth.google.authorize_redirect(request, redirect_uri)
 
 
@@ -79,3 +83,28 @@ async def logout(request: Request):
     request.session.pop('user', None)
 
     return RedirectResponse(url='http://localhost:5000')
+
+
+@app.post('/notify', tags=['notify'])
+async def notify(request: Request):
+    badge_app_json = await request.json()
+    
+    email = badge_app_json['PartitionKey']
+    badge_requests_list = ', '.join([badge['title'] for badge in badge_app_json['requests']])
+    message = f'Incoming badge application!\n\n*User*: {email}\n*Badges*: {badge_requests_list}'
+    
+    bot_message = {
+        'text' : message
+    }
+
+    message_headers = {'Content-Type': 'application/json; charset=UTF-8'}
+    try:
+        response = req.post(url=config.get('GOOGLE_CHAT_WEBHOOK_URL'),
+            headers=message_headers,
+            data=json.dumps(bot_message),
+        )
+
+        return response.content
+    except Exception as e:
+        print(e)
+    
