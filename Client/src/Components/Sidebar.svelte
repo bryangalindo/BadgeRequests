@@ -29,6 +29,7 @@
             'RowKey': id,
             'requests': preparedBadges,
         }
+
         return applicationObject;
     }
 
@@ -59,45 +60,92 @@
             credentials: 'include'
         });
         const data = await response.json();
-        console.log(data);
         if (response.ok) {
-            return console.log("Success");
+            alert('SUCCESS! Your badge application was successfully submitted.')
+            window.location.replace("http://localhost:5000/");
         } else {
+            alert('UH OH! We did not receive your application. Try again.')
+            window.location.replace("http://localhost:5000/");
             throw new Error(data);
         }
     }
 </script>
 
-<nav>
-    <h2>Selected Badges</h2>
-    {#if $BadgeStore}
+<h1><span>Badge Cart</span></h1>
+{#if $BadgeStore}
     {#each $BadgeStore as badge}
         <ul>
             <li>{badge.title} <b>[EXP: {badge.exp}]</b></li>
         </ul>
     {/each}
-    <input type="submit" on:click={() => handleSubmit()} class="fixedButton" value="Submit">
-    {/if}
-</nav>
-
+    <div class="wrapper">
+        <input type="submit" on:click={() => handleSubmit()} class="button fixed block" value="Submit">
+    </div>
+{/if}
 
 <style>
-    nav {
-        position: fixed;
-        top: 0;
-        right: 0;
-        height: 100%;
-        padding: 2rem 1rem 0.6rem;
-        border-left: 1px solid #aaa;
-        background: #fff;
-        width: 20rem;
+    h1 {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        text-align: center;
+        font-weight: 600;
     }
 
-    .fixedButton{
-            position: fixed;
-            bottom: 0px;
-            right: 110px; 
-            margin: flex;
-            padding: 20px;
+    h1 span {
+        background: linear-gradient(180deg, rgba(255,255,255,0) 80%, rgb(48, 204, 183) 80%);
+    }
+
+    li {
+        margin: 10px auto;
+        list-style: none;
+        font-size: small;
+        text-align: center;
+
+    }
+
+    .button {
+        font-family: 'Roboto', sans-serif;
+        background-color: rgb(234, 67, 77) ;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition-duration: 0.4s;
+    }
+
+    .button:hover {
+        color: white;
+    }
+
+    .block {
+        display: inline-block;
+        width: 75%; 
+        border: none;
+        padding: 14px 28px;
+        font-size: 16px;
+        cursor: pointer;
+        position: absolute;
+        bottom: 0px;
+    }
+
+    .wrapper {
+        display: flex;
+        justify-content: center;
+    }
+
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        ul {
+            display: none;
+            visibility: none;
         }
+
+        .block {
+            width: 75%; 
+            padding: 5px 10px;
+        }
+}
 </style>

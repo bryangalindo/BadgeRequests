@@ -6,14 +6,14 @@
     import Card from './Components/Card.svelte';
     import Sidebar from './Components/Sidebar.svelte';
 
-    let data = { email: '', name: '' };
+    let authData = { email: '', name: '', avatar: ''};
     let src = "./images/btn_google_signin.png";
 
     onMount(() => {
         const getRequest = axios
             .get(`http://localhost:8000/api/v1/auth/me`, { withCredentials: true })
             .then((res) => {
-                data = res.data;
+                authData = res.data;
             })
             .catch((err) => {
                 console.log(err);
@@ -45,57 +45,61 @@
 	let promise = getBackendData();
 </script>
 
-  {#if !data.email}
-    <a class="login" href="http://localhost:8000/login"><img class="centered" src={src} alt="Login Button" /></a>
-  {:else}
-  <Navbar />
-  <main>
-    <Sidebar email={data.email}/>
-    <p>Welcome {data.name}!</p>
-    <a class="logout" href="http://localhost:8000/logout">LOGOUT</a>
-    {#await promise}
-	    <div class="spinner">Spinner Here</div>
-	{:then data}
-    {#each Object.entries(data) as [category, badges]}
-        <div>
-            <h1>{category}</h1>
-        </div>  
-        <div class="container">
-            <div class="row">
-                {#each badges as badge}
-                    <Card id={badge.RowKey} description={badge.Description} title={badge.Title} exp={badge.Exp}/>
-                {/each}
-            </div>
+
+<div class="container">
+    {#if !authData.email}
+        <a class="login" href="http://localhost:8000/login"><img class="centered" src={src} alt="Login Button" /></a>
+    {:else}
+        <div class="header">
+            <Navbar name={authData.name} avatar={authData.avatar}/>
         </div>
-    {/each}
-	{:catch error}
-		<div class="uppercase text-red-700">{error.message}</div>
-	{/await}
-    </main>
-  {/if}
-
-
+        <div class="body">
+            {#await promise}
+                <div class="spinner">Spinner Here</div>
+            {:then data}
+                <div class="sidebar">
+                    <Sidebar email={authData.email}/>
+                </div>
+                <div class="content">
+                    {#each Object.entries(data) as [category, badges]}
+                        <h1><span><em>{category}</em></span></h1>
+                        <div class="cards">
+                            {#each badges as badge}
+                                <Card id={badge.RowKey} description={badge.Description} title={badge.Title} exp={badge.Exp}/>
+                            {/each}
+                        </div>
+                    {/each}
+                </div>
+            {:catch error}
+                <div class="uppercase text-red-700">{error.message}</div>
+            {/await}
+        </div>
+    {/if}
+</div>
 
 <style>
-    main {
-        text-align: center;
-        padding: 1em;
-        max-width: 240px;
-        margin: 0 auto;
-    }
-
 	h1 {
 		color: #595959;
 		text-transform: uppercase;
 		font-size: 4em;
-		font-weight: 100;
+		font-weight: bold;
         text-align: left;
-        padding-left: 275px;
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-bottom: 15px;
 	}
 
-    img {
-        max-width: 225px;
-        max-height: 150px;
+    h1 span {
+        background: linear-gradient(180deg, rgba(255,255,255,0) 75%, rgb(240,210,78) 80%);
+    }
+
+    h4 {
+        margin-top: 20px;
+    }
+
+    .cards {
+        display: flex;
+        flex-wrap: wrap;
     }
 
     .centered {
@@ -105,10 +109,47 @@
         transform: translate(-50%, -50%);
     }
 
+    .content {
+        overflow-y: scroll;
+        padding: 20px;
+        margin-left: 40px;
+    }
 
-    @media (min-width: 640px) {
-        main {
-            max-width: none;
+    .header {
+        background-color: #595959
+    }
+
+    img.centered {
+        max-width: 225px;
+        max-height: 150px;
+    }
+
+    .sidebar {
+        border-right: solid 1px lightgrey;
+        position: relative;
+    }
+
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        h1 {
+            text-transform: uppercase;
+            font-size: 3em;
+            font-weight: bold;
+	    }
+
+        .body {
+            display: grid;
+            grid-template-columns: 1fr;
+            overflow: hidden;
+        }
+
+        .content {
+            margin-left: 10px;
+            order: 1;
+        }
+
+        .sidebar {
+            order: 2;
         }
     }
 </style>
