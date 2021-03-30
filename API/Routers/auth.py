@@ -1,7 +1,9 @@
 from fastapi import APIRouter, Depends
+from starlette.requests import Request
+
 from Data.connection import Table
 from dependencies import get_current_user
-from starlette.requests import Request
+
 
 router = APIRouter(prefix="/api/v1/auth",
                    tags=["auth"])
@@ -13,5 +15,6 @@ async def get_me(request: Request):
     if user is not None:
         email = user['email']
         name = user['name']
-        return {"email": email, "name": name}
+        avatar = user['picture']
+        return {"email": email, "name": name, "avatar": avatar}
     return {"email": ""}
