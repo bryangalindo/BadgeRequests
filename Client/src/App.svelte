@@ -93,10 +93,6 @@
         background: linear-gradient(180deg, rgba(255,255,255,0) 75%, rgb(240,210,78) 80%);
     }
 
-    h4 {
-        margin-top: 20px;
-    }
-
     .cards {
         display: flex;
         flex-wrap: wrap;
