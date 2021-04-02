@@ -11,7 +11,7 @@
 
     onMount(() => {
         const getRequest = axios
-            .get(`http://localhost:8000/api/v1/auth/me`, { withCredentials: true })
+            .get(`https://hcss-badgeportal.azurewebsites.net:8000/api/v1/auth/me`, { withCredentials: true })
             .then((res) => {
                 authData = res.data;
             })
@@ -30,7 +30,7 @@
     };
 
 	async function getBackendData() {
-		const response = await fetch("http://localhost:8000/api/v1/badges/", {
+		const response = await fetch("https://hcss-badgeportal.azurewebsites.net:8000/api/v1/badges/", {
             credentials: 'include'
         });
 		const data = await response.json();
@@ -48,7 +48,7 @@
 
 <div class="container">
     {#if !authData.email}
-        <a class="login" href="http://localhost:8000/login"><img class="centered" src={src} alt="Login Button" /></a>
+        <a class="login" href="https://hcss-badgeportal.azurewebsites.net:8000/login"><img class="centered" src={src} alt="Login Button" /></a>
     {:else}
         <div class="header">
             <Navbar name={authData.name} avatar={authData.avatar}/>

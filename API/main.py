@@ -18,8 +18,8 @@ from Routers import badges, requests, applications, auth
 app = FastAPI()
 
 origins = [
-    "http://localhost",
-    "http://localhost:5000",
+    "https://hcss-badgeportal.azurewebsites.net",
+    "https://hcss-badgeportal.azurewebsites.net:5000",
 ]
 
 app.add_middleware(
@@ -73,7 +73,7 @@ async def auth(request: Request):
     # Save the user
     request.session['user'] = dict(user)
 
-    return RedirectResponse(url='http://localhost:5000')
+    return RedirectResponse(url='https://hcss-badgeportal.azurewebsites.net:5000')
 
 
 # Tag it as "authentication" for our docs
@@ -82,7 +82,7 @@ async def logout(request: Request):
     # Remove the user
     request.session.pop('user', None)
 
-    return RedirectResponse(url='http://localhost:5000')
+    return RedirectResponse(url='https://hcss-badgeportal.azurewebsites.net:5000')
 
 
 @app.post('/notify', tags=['notify'])
@@ -103,7 +103,7 @@ async def notify(request: Request):
             headers=message_headers,
             data=json.dumps(bot_message),
         )
-        return RedirectResponse(url='http://localhost:5000')
+        return RedirectResponse(url='https://hcss-badgeportal.azurewebsites.net:5000')
     except Exception as e:
         print(e)
     
