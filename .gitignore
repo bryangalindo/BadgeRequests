@@ -1,8 +1,8 @@
 .vscode
-.env
 .pytest_cache
 .devcontainer/devcontainer.json
 .devcontainer/Dockerfile
+API/.env
 API/__pycache__/dependencies.cpython-38.pyc
 API/__pycache__/main.cpython-38.pyc
 API/Data/__pycache__/__init__.cpython-38.pyc
@@ -16,3 +16,6 @@ API/Routers/__pycache__/badges.cpython-38.pyc
 API/Routers/__pycache__/helpers.cpython-38.pyc
 API/Routers/__pycache__/requests.cpython-38.pyc
 API/Data/badges.csv
+.Dockerfile.swp
+Client/Dockerfile
+API/Dockerfile
