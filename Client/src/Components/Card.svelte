@@ -11,6 +11,7 @@
     const handleClick = (id, title, exp) => {
     const currentIndex = badgesToSubmit.indexOf(id);
     const badgeObject = {"id": id, "title": title, "exp": exp};
+    const button = document.getElementById("button");
 
     if (currentIndex === -1) {
         badgesToSubmit.push(id);
@@ -26,6 +27,12 @@
         })
         $BadgeStore = $BadgeStore;
     }
+
+    if ($BadgeStore.length === 0) {
+            button.disabled = true
+        } else {
+            button.disabled = false
+        }
 
   }
 </script>
@@ -60,11 +67,6 @@
         flex-basis: 20%;
         margin: 5px 5px;
     }
-
-    /* .card input {
-        float:right;
-    } */
-
     /* Extra small devices (phones, 600px and down) */
     @media only screen and (max-width: 600px) {
         .card {

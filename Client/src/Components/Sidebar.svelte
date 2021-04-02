@@ -1,8 +1,15 @@
 <script>
+    import { onMount } from 'svelte';
     import BadgeStore from '../Stores/BadgeStore.js';
     import { v4 as uuidv4 } from 'uuid';
 
     export let email;
+
+    onMount(() => {
+        let button = document.getElementById("button");
+        button.disabled = true;
+        }
+    )
 
     const prepareBadgeArray = (badges, email, id) => {
         const preparedBadgeArray = [];
@@ -50,6 +57,7 @@
     }
     
     const handleSubmit = async () => {
+        document.getElementById("button").disabled = true;
         const id = uuidv4();
         const applicationObject = prepareApplicationObject($BadgeStore, email, id);
         sendGoogleChatNotification(applicationObject)
@@ -71,7 +79,7 @@
     }
 </script>
 
-<h1><span>Badge Cart</span></h1>
+<h1><span>Cart</span></h1>
 {#if $BadgeStore}
     {#each $BadgeStore as badge}
         <ul>
@@ -79,41 +87,39 @@
         </ul>
     {/each}
     <div class="wrapper">
-        <input type="submit" on:click={() => handleSubmit()} class="button fixed block" value="Submit">
+        <input id="button" type="submit" on:click={() => handleSubmit() } class="button fixed block" value="Submit">
     </div>
 {/if}
 
 <style>
     h1 {
+        color: #343A40; 
         margin-top: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         text-transform: uppercase;
-        letter-spacing: 1.5px;
+        font-weight: 900;
         text-align: center;
-        font-weight: 600;
     }
 
     h1 span {
-        background: linear-gradient(180deg, rgba(255,255,255,0) 80%, rgb(48, 204, 183) 80%);
+        background: linear-gradient(180deg, rgba(255,255,255,0) 85%, rgb(48, 204, 183) 80%);
     }
 
     li {
-        margin: 10px auto;
+        margin-top: 5px;
         list-style: none;
-        font-size: small;
         text-align: center;
 
     }
 
     .button {
-        font-family: 'Roboto', sans-serif;
         background-color: rgb(234, 67, 77) ;
         color: white;
         text-transform: uppercase;
-        letter-spacing: 2px;
         border-radius: 5px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         transition-duration: 0.4s;
+        font-weight: 800;
     }
 
     .button:hover {

@@ -7,7 +7,8 @@
 <div class="flexbox">
     <ul>
         <li><a href="/"><img class="logo"{src} alt="logo"></a></li>
-        <li><h1>Application Portal</h1></li>
+        <li><h1>HCSS Badge Shop</h1>
+        </li>
     </ul>
     <ul>
         <li><p>Welcome, <b>{name}</b>!</p></li>
@@ -17,8 +18,10 @@
 
 <style>
     h1 {
+        font-family: 'Press Start 2P', cursive;
+        word-spacing: -15px;
         margin-top: 12px;
-        margin-left: -5px;
+        margin-left: -10px;
         color:white;
         text-transform: uppercase;
         letter-spacing: 1.25px;

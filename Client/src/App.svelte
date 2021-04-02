@@ -79,10 +79,11 @@
 
 <style>
 	h1 {
-		color: #595959;
+        font-family: 'Press Start 2P', cursive;
+		color: #343A40;
 		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: bold;
+		font-size: 3.5em;
+		word-spacing: -15px;
         text-align: left;
         margin-top: 10px;
         margin-left: 10px;
@@ -112,7 +113,7 @@
     }
 
     .header {
-        background-color: #595959
+        background-color: #343A40;
     }
 
     img.centered {
