@@ -18,8 +18,8 @@ from Routers import badges, requests, applications, auth
 app = FastAPI()
 
 origins = [
-    "https://hcss-badgeportal.azurewebsites.net",
-    "https://hcss-badgeportal.azurewebsites.net:5000",
+    "http://localhost",
+    "http://localhost:5000",
 ]
 
 app.add_middleware(
