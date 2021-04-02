@@ -70,7 +70,7 @@
     /* Extra small devices (phones, 600px and down) */
     @media only screen and (max-width: 600px) {
         .card {
-            flex-basis: 100%;
+            flex-basis: 82%;
         }
     }
 
