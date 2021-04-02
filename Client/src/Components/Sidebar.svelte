@@ -144,6 +144,15 @@
 
     /* Extra small devices (phones, 600px and down) */
     @media only screen and (max-width: 600px) {
+        h1 {
+            visibility: none;
+        }
+
+        h1 span {
+            background: white;
+        }
+
+
         ul {
             display: none;
             visibility: none;

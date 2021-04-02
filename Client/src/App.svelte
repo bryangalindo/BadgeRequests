@@ -130,8 +130,9 @@
     @media only screen and (max-width: 600px) {
         h1 {
             text-transform: uppercase;
-            font-size: 3em;
+            font-size: 2.3em;
             font-weight: bold;
+            margin-bottom: 10px;
 	    }
 
         .body {
