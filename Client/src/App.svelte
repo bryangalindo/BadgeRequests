@@ -55,7 +55,7 @@
         </div>
         <div class="body">
             {#await promise}
-                <div class="spinner">Spinner Here</div>
+                <div class="spinner">Loading...</div>
             {:then data}
                 <div class="sidebar">
                     <Sidebar email={authData.email}/>
