@@ -60,20 +60,22 @@
         document.getElementById("button").disabled = true;
         const id = uuidv4();
         const applicationObject = prepareApplicationObject($BadgeStore, email, id);
-        sendGoogleChatNotification(applicationObject)
-        const response = await fetch("http://locahost:8000/api/v1/applications/", {
+        sendGoogleChatNotification(applicationObject);
+        const response = await fetch("http://localhost:8000/api/v1/applications/", {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Access-Control-Allow-Origin': "http://localhost:5000",
+                'Content-Type': 'application/json'},
             body: JSON.stringify(applicationObject),
             credentials: 'include'
         });
         const data = await response.json();
         if (response.ok) {
             alert('SUCCESS! Your badge application was successfully submitted.')
-            window.location.replace("http://localhost:5000/");
+            window.location.replace("http://localhost:5000");
         } else {
             alert('UH OH! We did not receive your application. Try again.')
-            window.location.replace("http://localhost:5000/");
+            window.location.replace("http://localhost:5000");
             throw new Error(data);
         }
     }
