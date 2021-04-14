@@ -16,10 +16,14 @@ from Routers import badges, requests, applications, auth
 
 
 app = FastAPI()
+config = Config()
+
+CONF_URL="https://accounts.google.com/.well-known/openid-configuration"
+CLIENT_HOST_URL = config('CLIENT_HOST_URL', cast=str)
+GOOGLE_CHAT_WEBHOOK_URL = config('GOOGLE_CHAT_WEBHOOK_URL', cast=str)
 
 origins = [
-    "http://localhost",
-    "http://localhost:5000",
+    CLIENT_HOST_URL,
 ]
 
 app.add_middleware(
@@ -37,10 +41,7 @@ app.include_router(requests.router)
 app.include_router(applications.router)
 app.include_router(auth.router)
 
-config = Config('.env')
 oauth = OAuth(config)
-
-CONF_URL = 'https://accounts.google.com/.well-known/openid-configuration'
 
 oauth.register(
     name='google',
@@ -72,8 +73,8 @@ async def auth(request: Request):
 
     # Save the user
     request.session['user'] = dict(user)
-
-    return RedirectResponse(url='https://hcss-badgeportal.azurewebsites.net:5000')
+    
+    return RedirectResponse(url=CLIENT_HOST_URL)
 
 
 # Tag it as "authentication" for our docs
@@ -82,7 +83,7 @@ async def logout(request: Request):
     # Remove the user
     request.session.pop('user', None)
 
-    return RedirectResponse(url='https://hcss-badgeportal.azurewebsites.net:5000')
+    return RedirectResponse(url=CLIENT_HOST_URL)
 
 
 @app.post('/notify', tags=['notify'])
@@ -99,11 +100,11 @@ async def notify(request: Request):
 
     message_headers = {'Content-Type': 'application/json; charset=UTF-8'}
     try:
-        response = req.post(url=config.get('GOOGLE_CHAT_WEBHOOK_URL'),
+        response = req.post(url=GOOGLE_CHAT_WEBHOOK_URL,
             headers=message_headers,
             data=json.dumps(bot_message),
         )
-        return RedirectResponse(url='https://hcss-badgeportal.azurewebsites.net:5000')
+        return RedirectResponse(url=CLIENT_HOST_URL)
     except Exception as e:
         print(e)
     

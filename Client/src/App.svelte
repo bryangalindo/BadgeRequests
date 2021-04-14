@@ -1,6 +1,5 @@
 <script lang="ts">
     import { onMount } from 'svelte';
-    import axios from 'axios';
 
     import Navbar from './Components/Navbar.svelte';
     import Card from './Components/Card.svelte';
@@ -8,16 +7,24 @@
 
     let authData = { email: '', name: '', avatar: ''};
     let src = "./images/btn_google_signin.png";
+    let backendURL = "http://localhost:5000"
+
 
     onMount(() => {
-        const getRequest = axios
-            .get(`http://localhost:8000/api/v1/auth/me`, { withCredentials: true })
-            .then((res) => {
-                authData = res.data;
-            })
-            .catch((err) => {
-                console.log(err);
+        async function getAuthData() {
+            console.log("Mounted and ready to go");
+            const response = await fetch(`${backendURL}/api/v1/auth/me`, {
+                credentials: 'include'
             });
+            const data = await response.json();
+            if (response.ok) {
+                authData = data;
+            } else {
+                throw new Error(data);
+            }
+        }
+
+        getAuthData();
     });
     
     const groupBy = (_array, key) => {
@@ -30,7 +37,7 @@
     };
 
 	async function getBackendData() {
-		const response = await fetch("http://localhost:8000/api/v1/badges/", {
+		const response = await fetch(`${backendURL}/api/v1/badges/`, {
             credentials: 'include'
         });
 		const data = await response.json();
@@ -48,7 +55,7 @@
 
 <div class="container">
     {#if !authData.email}
-        <a class="login" href="http://localhost:8000/login"><img class="centered" src={src} alt="Login Button" /></a>
+        <a class="login" href="{backendURL}/login"><img class="centered" src={src} alt="Login Button" /></a>
     {:else}
         <div class="header">
             <Navbar name={authData.name} avatar={authData.avatar}/>

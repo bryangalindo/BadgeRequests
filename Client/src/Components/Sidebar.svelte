@@ -4,6 +4,8 @@
     import { v4 as uuidv4 } from 'uuid';
 
     export let email;
+    let clientHostURL = 'https://hcss-badgeportal.azurewebsites.net';
+    let backendURL = 'http://localhost:5000';
 
     onMount(() => {
         let button = document.getElementById("button");
@@ -41,7 +43,7 @@
     }
 
     const sendGoogleChatNotification = async (application) => {
-        const response = await fetch("http://localhost:8000/notify", {
+        const response = await fetch(`${backendURL}/notify`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(application),
@@ -61,10 +63,10 @@
         const id = uuidv4();
         const applicationObject = prepareApplicationObject($BadgeStore, email, id);
         sendGoogleChatNotification(applicationObject);
-        const response = await fetch("http://localhost:8000/api/v1/applications/", {
+        const response = await fetch(`${backendURL}/api/v1/applications/`, {
             method: 'POST',
             headers: {
-                'Access-Control-Allow-Origin': "http://localhost:5000",
+                'Access-Control-Allow-Origin': clientHostURL,
                 'Content-Type': 'application/json'},
             body: JSON.stringify(applicationObject),
             credentials: 'include'
@@ -72,10 +74,10 @@
         const data = await response.json();
         if (response.ok) {
             alert('SUCCESS! Your badge application was successfully submitted.')
-            window.location.replace("http://localhost:5000");
+            window.location.replace(clientHostURL);
         } else {
             alert('UH OH! We did not receive your application. Try again.')
-            window.location.replace("http://localhost:5000");
+            window.location.replace(clientHostURL);
             throw new Error(data);
         }
     }
