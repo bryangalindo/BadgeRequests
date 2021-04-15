@@ -7,7 +7,7 @@
 
     let authData = { email: '', name: '', avatar: ''};
     let src = "./images/btn_google_signin.png";
-    let backendURL = "http://localhost:5000"
+    let backendURL = "http://localhost:8000"
 
 
     onMount(() => {

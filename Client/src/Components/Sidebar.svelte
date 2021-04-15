@@ -4,8 +4,8 @@
     import { v4 as uuidv4 } from 'uuid';
 
     export let email;
-    let clientHostURL = 'https://hcss-badgeportal.azurewebsites.net';
-    let backendURL = 'http://localhost:5000';
+    let clientHostURL = 'http://localhost:5000';
+    let backendURL = 'http://localhost:8000';
 
     onMount(() => {
         let button = document.getElementById("button");
