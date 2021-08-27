@@ -3,7 +3,7 @@ from Data.connection import Table
 from dependencies import get_current_user
 
 
-router = APIRouter(prefix="/api/v1/badges",
+router = APIRouter(prefix="/badges",
                    tags=["badges"], dependencies=[Depends(get_current_user)])
 
 

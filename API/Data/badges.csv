@@ -1,0 +1,108 @@
+1,Milestone,Belt Buster,The winner of the Champion Belt,250
+2,Milestone,Newsletter Newbie,Be Featured in the Support Newsletter,500
+3,Milestone,Kabbalistic Kitana,Fan Favorite,250
+4,Milestone,Unparalleled Performance,End of the Year Awards,2000
+5,Milestone,"Yo Dawg, I Heard You Like Badges",Badge for earning every badge of each category,2000
+6,Milestone,Headhunter,Complete a major task/goal given from Managers,4000
+7,Milestone,The Z-Shaped Tetris Block,Lead in Recognitions Quarterly,1000
+8,Milestone,Luigi On Madcatz,Lead in Assists Monthly,500
+9,Milestone,Crowd Pleaser,Close out a month with a perfect survey score,4000
+10,Milestone,Survey Says...,Close out an entire quarter with a 9.8 survey average,2000
+11,Milestone,Under Review,Hold a case review average of 95% across a 3 month period,1000
+12,Milestone,Inevitably Awesome,First 10 survey with a comment,250
+13,Milestone,Firing On All Cylinders,Hitting for the Cycle in 7Geese,500
+14,Projects,HB SQL Conversion - Skywalker,HeavyBid SQL Conversion in production (apprentice),500
+15,Projects,HB SQL Conversion - Han,HeavyBid SQL Conversion in production (solo),1000
+16,Projects,HB SQL Conversion - Obi,HeavyBid SQL Conversion in production (mentor),2000
+17,Projects,HB Enterprise Conversion - Skywalker,HeavyBid Enterprise Conversion in production (apprentice),1000
+18,Projects,HB Enterprise Conversion - Han,HeavyBid Enterprise Conversion in production (solo),2000
+19,Projects,HB Enterprise Conversion - Obi,HeavyBid Enterprise Conversion in production (mentor),4000
+20,Projects,HJ SQL Conversion - Skywalker,HeavyJob SQL Conversion in production (apprentice),500
+21,Projects,HJ SQL Conversion - Han,HeavyJob SQL Conversion in production (solo),1000
+22,Projects,HJ SQL Conversion - Obi,HeavyJob SQL Conversion in production (mentor),2000
+23,Projects,HJ Enterprise Conversion - Skywalker,HeavyJob Enterprise Conversion in production (apprentice),1000
+24,Projects,HJ Enterprise Conversion - Han,HeavyJob Enterprise Conversion in production (solo),2000
+25,Projects,HJ Enterprise Conversion - Obi,HeavyJob Enterprise Conversion in production (mentor),4000
+26,Projects,HB Production Migration - Skywalker,HeavyBid migration in production (apprentice),500
+27,Projects,HB Production Migration - Han,HeavyBid migration in production (solo),1000
+28,Projects,HB Production Migration - Obi,HeavyBid migration in production (mentor),2000
+29,Projects,HJ Production Migration - Skywalker,HeavyJob migration in production (apprentice),500
+30,Projects,HJ Production Migration - Han,HeavyJob migration in production (solo),1000
+31,Projects,HJ Production Migration - Obi,HeavyJob migration in production (mentor),2000
+32,Projects,Carmen Sandiego,The new plans geolocater / tag for location project,1000
+33,Projects,In The Matrix - Skywalker,Complex Customer Recode (apprentice),500
+34,Projects,In The Matrix - Han,Complex Customer Recode (solo),1000
+35,Projects,In The Matrix - Obi,Complex Customer Recode (mentor),2000
+36,Projects,Disp SQL Conversion - Skywalker,Dispatcher SQL Conversion (apprentice),1000
+37,Projects,Disp SQL Conversion - Han,Dispatcher SQL Conversion (solo),2000
+38,Projects,Disp SQL Conversion - Obi,Dispatcher SQL Conversion (mentor),4000
+39,Projects,E360 Production Migration - Skywalker,Equipment360 migration in production (apprentice),500
+40,Projects,E360 Production Migration - Han,Equipment360 migration in production (solo),1000
+41,Projects,E360 Production Migration - Obi,Equipment360 migration in production (mentor),2000
+42,Projects,Disp Production Migration - Skywalker,Dispatcher migration in production (apprentice),250
+43,Projects,Disp Production Migration - Han,Dispatcher migration in production (solo),1000
+44,Projects,Disp Production Migration - Obi,Dispatcher migration in production (mentor),2000
+45,Projects,GPS Reprogram - Skywalker,Reprogram a GPS device over-the-air (apprentice),500
+46,Projects,GPS Reprogram - Han,Reprogram a GPS device over-the-air (solo),1000
+47,Projects,GPS Reprogram - Obi,Reprogram a GPS device over-the-air (mentor),1000
+48,Culture,Race Day,Attend an HCSS sponsored race,250
+49,Culture,Bram Stoker's Challenge,Contribute to our blood drive,250
+50,Culture,Fitness First,Attend your first fitness class,250
+51,Culture,Eventful Occasion,"Attend your first HCSS event (e.g. picnic, escape room)",250
+52,Culture,Did I Mention That We're Quenchin'?,Attend your first thirstquencher,250
+53,Culture,Running Mad Game,Host your first game night,500
+54,Culture,Charitable Champ,Donate to an HCSS sponsored charitable cause,250
+55,Culture,#NoFilter,"When traveling (one per trip), take a picture with a customer's company logo (#INSIDEHCSS)",250
+56,Culture,"But First, Let Me Take A Selfie...",Selfie with a customer (#INSIDEHCSS),250
+57,Culture,"?,?,?,?,?,?,?,?,B,A,Start",Video Game Tournament Champion,500
+58,Culture,What's A Goomba To A Goblin,Halloween skit OR Costume contest,500
+59,Culture,Feeling Cultured,Host a culture event,250
+60,Culture,Sam Malone,Attend the happy hour for your own self,500
+61,Culture,Sweaty Duos,Volunteer to be a Support Buddy to a new hire,500
+62,Human Resources,Talent Scout,Referral of a new hire,250
+63,Human Resources,Don't Throw Rocks,Submit a review for glassdoor,250
+64,Human Resources,New Challenger Approaching,Refer someone who becomes an employee,500
+65,Knowledge,Documentation Diligence,Publish 50+ Articles ,1000
+66,Knowledge,Kill-Cam Sniper,Become a KCS Coach,2000
+67,Knowledge,Publisher's Clearing House,Attain External Publisher License for KCS,1000
+68,Knowledge,Cobra Kai Dojo,Complete KCS Leadership Workshop,1000
+69,Knowledge,Bilbo Bloggins,"Write your first ""blog"" post for the HCSS Community",500
+70,Knowledge,Taught In The Act,Teach a customer-facing class [CHIC / Online],1000
+71,Knowledge,Host With The Most,Host a Webinar and/or Helpinar,1000
+72,Knowledge,Forum Lurker,Answering 10+ HCSS Community questions,250
+73,Knowledge,The More You Know...,Contribute a knowledge asset to TheHub that is viewed at least 50 times,500
+74,Knowledge,My Favorite Subject,Hosting a lunch presentation on a particular subject,500
+75,Knowledge,Traveler's Token,Serve as an assistant for an off-site HB training,500
+76,Knowledge,Instructor's Instincts,Teach an employee-facing class [Product or Process Training],250
+77,Knowledge,Sideline Speculator,Attend a Design Session in the CHIC and share your key takeaways during a Core standup or on a Coach and Share channel,250
+78,Knowledge,Indoor Sprints,Run a Knowledge Sprint,500
+79,Knowledge,Tai Lopez's Garage,Participate in On-Site Knowledge Exchange and complete form,500
+80,Professional Development,Speaking Straight,Attend a Collaborative Way workshop,250
+81,Professional Development,Being For Each Other,Facilitate a Collaborative Way workshop,1000
+82,Professional Development,Pure Pwnage,Take ownership of an area of responsibility,500
+83,Professional Development,"*Slaps Roof Of Cup, This Bad Boy Can Fit So Many Ideas In It...",Participate in Ideas Cup,1000
+84,Professional Development,Upgraded Sights I - Iron Sights,Earn approved Level 1 Certification,500
+85,Professional Development,Upgraded Sights Ii - Reflex Scope,Earn approved Level 2 Certification,2000
+86,Professional Development,Upgraded Sights Iii - Thermal Scope,Earn approved Level 3 Certification,8000
+87,Support,Flyswattin',Uncover your first bug that becomes a JIRA item,500
+88,Support,Mighty Mouse Playhouse,Save the day for an implementor or trainer while they are on site,1000
+89,Support,Nocturnal Initiation,First Night Calls,250
+90,Support,+2INT +3STR +8PTO,First Weekend Calls,250
+91,Support,Case Crusader - Bronze,100 Closed Cases,250
+92,Support,Case Crusader - Silver,1000 Closed Cases,500
+93,Support,Case Crusader - Gold,5000 Closed Cases,1000
+94,Support,Case Crusader - Platinum,10000 Closed Cases,2000
+95,Support,Player 2 - Bronze,Earn 100 assists in ServiceCloud,1000
+96,Support,Player 2 - Silver,Earn 250 assists in ServiceCloud,2000
+97,Support,Player 2 - Gold,Earn 500 assists in ServiceCloud,4000
+98,Support,Player 2 - Platinum,Earn 1000 assists in ServiceCloud,8000
+99,Support,"Hear Them Ring, Ring-A-Ling",First Holiday as Primary,250
+100,Support,Unassigned Assassin,Pick up more than 30 unassigned cases in a month,500
+101,Support,Armored Core Competencies,Complete your initial competency evaluation with your manager,500
+102,UGM,Helping Hands,Volunteer to help on a UGM team,500
+103,UGM,Organizational Optimism,Volunteer to be a UGM Team Lead,1000
+104,UGM,I'm Pickle Click,Laptop Driver for a UGM class,250
+105,UGM,Umpteenth Ugm,UGM Attendence Milestones ,250
+106,UGM,1v1 Showdown,Participate in one on one support at UGM,500
+107,UGM,Master Chief's Regalia,Lead instructor for a UGM class,1000
+108,UGM,Cortana's Shroud,Co-instructor for a UGM class,500

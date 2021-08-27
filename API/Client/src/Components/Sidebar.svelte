@@ -4,8 +4,7 @@
     import { v4 as uuidv4 } from 'uuid';
 
     export let email;
-    let clientHostURL = 'http://localhost:5000';
-    let backendURL = 'http://localhost:8000';
+    let hostURL = "https://hcss-badgeportal.azurewebsites.net"
 
     onMount(() => {
         let button = document.getElementById("button");
@@ -43,14 +42,13 @@
     }
 
     const sendGoogleChatNotification = async (application) => {
-        const response = await fetch(`${backendURL}/notify`, {
+        const response = await fetch(`${hostURL}/api/v1/notify`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(application),
             credentials: 'include'
         });
         const data = await response.json();
-        console.log(data);
         if (response.ok) {
             return console.log("Successfully notified Google Chat");
         } else {
@@ -63,10 +61,10 @@
         const id = uuidv4();
         const applicationObject = prepareApplicationObject($BadgeStore, email, id);
         sendGoogleChatNotification(applicationObject);
-        const response = await fetch(`${backendURL}/api/v1/applications/`, {
+        const response = await fetch(`${hostURL}/api/v1/applications/`, {
             method: 'POST',
             headers: {
-                'Access-Control-Allow-Origin': clientHostURL,
+                'Access-Control-Allow-Origin': hostURL,
                 'Content-Type': 'application/json'},
             body: JSON.stringify(applicationObject),
             credentials: 'include'
@@ -74,10 +72,10 @@
         const data = await response.json();
         if (response.ok) {
             alert('SUCCESS! Your badge application was successfully submitted.')
-            window.location.replace(clientHostURL);
+            window.location.replace(hostURL);
         } else {
             alert('UH OH! We did not receive your application. Try again.')
-            window.location.replace(clientHostURL);
+            window.location.replace(hostURL);
             throw new Error(data);
         }
     }
@@ -103,10 +101,6 @@
         text-transform: uppercase;
         font-weight: 900;
         text-align: center;
-    }
-
-    h1 span {
-        background: linear-gradient(180deg, rgba(255,255,255,0) 85%, rgb(48, 204, 183) 80%);
     }
 
     li {

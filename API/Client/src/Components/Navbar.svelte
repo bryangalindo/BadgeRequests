@@ -25,7 +25,7 @@
         color:white;
         text-transform: uppercase;
         letter-spacing: 1.25px;
-        font-size: x-large;
+        font-size: large;
     }
 
     p {

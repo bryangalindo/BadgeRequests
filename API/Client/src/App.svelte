@@ -4,27 +4,74 @@
     import Navbar from './Components/Navbar.svelte';
     import Card from './Components/Card.svelte';
     import Sidebar from './Components/Sidebar.svelte';
+    import SubmittedBadges from './Stores/SubmittedBadges'
 
     let authData = { email: '', name: '', avatar: ''};
     let src = "./images/btn_google_signin.png";
-    let backendURL = "http://localhost:8000"
-
+    let hostURL = "https://hcss-badgeportal.azurewebsites.net";
+    let submittedBadgesData = [];
 
     onMount(() => {
         async function getAuthData() {
-            console.log("Mounted and ready to go");
-            const response = await fetch(`${backendURL}/api/v1/auth/me`, {
+            const response = await fetch(`${hostURL}/api/v1/auth/me`, {
                 credentials: 'include'
             });
             const data = await response.json();
             if (response.ok) {
                 authData = data;
+                return authData;
+            } else {
+                throw new Error(data);
+            }
+        }
+
+        async function getSubmittedBadgesData() {
+            const auth = await getAuthData();
+            const response = await fetch(`${hostURL}/api/v1/requests/email/${auth.email}`, {
+                credentials: 'include'
+            });
+            const data = await response.json();
+            if (response.ok) {
+                submittedBadgesData = data;
+                SubmittedBadges.update(badges => badges = submittedBadgesData)
+            } else {
+                throw new Error(data);
+            }
+        }
+
+        async function addNewUser() {
+            const response = await fetch(`${hostURL}/api/v1/users/`, {
+            method: 'POST',
+            headers: {
+                'Access-Control-Allow-Origin': hostURL,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({PartitionKey: "Unknown", RowKey: authData.email, Supervisor: "", SupervisorGoogleChatID: ""}),
+            credentials: 'include'
+            });
+            if (response.ok) {
+                alert('New user detected. Let the games begin ;-)')
+            }
+        }
+
+        async function checkIfUser() {
+            const auth = await getAuthData();
+            const response = await fetch(`${hostURL}/api/v1/users/${auth.email}`, {
+                credentials: 'include'
+            });
+            const data = await response.json();
+            if (response.ok) {
+                if (!data) {
+                    addNewUser();
+                }
             } else {
                 throw new Error(data);
             }
         }
 
         getAuthData();
+        getSubmittedBadgesData();
+        checkIfUser();
     });
     
     const groupBy = (_array, key) => {
@@ -37,7 +84,7 @@
     };
 
 	async function getBackendData() {
-		const response = await fetch(`${backendURL}/api/v1/badges/`, {
+		const response = await fetch(`${hostURL}/api/v1/badges/`, {
             credentials: 'include'
         });
 		const data = await response.json();
@@ -55,7 +102,7 @@
 
 <div class="container">
     {#if !authData.email}
-        <a class="login" href="{backendURL}/login"><img class="centered" src={src} alt="Login Button" /></a>
+        <a class="login" href="{hostURL}/api/v1/login"><img class="centered" src={src} alt="Login Button" /></a>
     {:else}
         <div class="header">
             <Navbar name={authData.name} avatar={authData.avatar}/>

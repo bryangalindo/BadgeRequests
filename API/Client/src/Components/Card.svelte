@@ -1,5 +1,6 @@
 <script>
     import BadgeStore from '../Stores/BadgeStore.js';
+    import SubmittedBadges from '../Stores/SubmittedBadges.js'
 
     export let title;
     export let description;
@@ -8,33 +9,45 @@
 
     let badgesToSubmit = [];
 
-    const handleClick = (id, title, exp) => {
-    const currentIndex = badgesToSubmit.indexOf(id);
-    const badgeObject = {"id": id, "title": title, "exp": exp};
-    const button = document.getElementById("button");
-
-    if (currentIndex === -1) {
-        badgesToSubmit.push(id);
-        badgesToSubmit = badgesToSubmit;
-        BadgeStore.update(currentBadges => {
-        return [...currentBadges, badgeObject]
-    })
-    } else {
-        badgesToSubmit.splice(currentIndex, 1);
-        badgesToSubmit = badgesToSubmit;
-        $BadgeStore = $BadgeStore.filter(badge => {
-            return badge.id !== id
-        })
-        $BadgeStore = $BadgeStore;
+    const checkIfBadgeSubmitted = (badgeID) => {
+        for (const badge of $SubmittedBadges) {
+            if (badge.badgeID == badgeID) {
+                alert("WARNING! You already applied for this badge. Confirm with your supervisor if you can apply for this badge again.");
+                break;
+            }
+        }
     }
 
-    if ($BadgeStore.length === 0) {
-            button.disabled = true
-        } else {
-            button.disabled = false
+    const handleClick = (id, title, exp) => {
+        const currentIndex = badgesToSubmit.indexOf(id);
+        const badgeObject = {"id": id, "title": title, "exp": exp};
+        const button = document.getElementById("button");
+
+        if (currentIndex === -1) 
+        {
+            checkIfBadgeSubmitted(badgeObject.id);
+            badgesToSubmit.push(id);
+            badgesToSubmit = badgesToSubmit;
+            BadgeStore.update(currentBadges => {
+            return [...currentBadges, badgeObject]
+            })
+        } 
+        else 
+        {
+            badgesToSubmit.splice(currentIndex, 1);
+            badgesToSubmit = badgesToSubmit;
+            $BadgeStore = $BadgeStore.filter(badge => {
+                return badge.id !== id
+            })
+            $BadgeStore = $BadgeStore;
         }
 
-  }
+        if ($BadgeStore.length === 0) {
+                button.disabled = true
+            } else {
+                button.disabled = false
+            }
+    }
 </script>
 
 <div class="card">

@@ -8,7 +8,9 @@ from Routers.helpers import (add_badge_requests_to_applications, add_badge_reque
                              delete_badge_requests_from_requests_table)
 
 from dependencies import get_current_user, get_current_admin
-router = APIRouter(prefix="/api/v1/applications",
+
+
+router = APIRouter(prefix="/applications",
                    tags=["applications"], dependencies=[Depends(get_current_user)])
 
 

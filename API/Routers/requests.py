@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from Data.connection import Table
 from dependencies import get_current_user, get_current_admin
 
-router = APIRouter(prefix="/api/v1/requests",
+router = APIRouter(prefix="/requests",
                    tags=["requests"], dependencies=[Depends(get_current_user)])
 
 
@@ -18,3 +18,9 @@ async def get_request(item_id: int, admin=Depends(get_current_admin)):
     table = Table('requests')
     item = table.query('RowKey', f'{item_id}')
     return item.items[0]
+
+@router.get("/email/{email}")
+async def get_requests_by_email(email: str):
+    table = Table('requests')
+    data = table.query('PartitionKey', f'{email}')
+    return data.items

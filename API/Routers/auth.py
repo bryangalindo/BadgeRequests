@@ -5,7 +5,7 @@ from Data.connection import Table
 from dependencies import get_current_user
 
 
-router = APIRouter(prefix="/api/v1/auth",
+router = APIRouter(prefix="/auth",
                    tags=["auth"])
 
 

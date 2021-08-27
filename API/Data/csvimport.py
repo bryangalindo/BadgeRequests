@@ -1,27 +1,25 @@
 from azure.cosmosdb.table.tableservice import TableService
-from azure.cosmosdb.table.models import Entity
-from .config import settings
 import csv
 
+if __name__ == '__main__':
+    CSV_FILE = 'users.csv'
+    TABLE = 'users'
+    CONNECTION_STRING = ''
+    
+    table_service = TableService(
+        connection_string=CONNECTION_STRING)
 
-# USE THIS FILE TO IMPORT THE BADGE CSV TO COSMOS EMULATOR
+    try:
+        with open(CSV_FILE, newline='') as csvfile:
+            reader = csv.reader(csvfile, delimiter=",")
+            for row in reader:
+                user = {}
+                user['RowKey'] = row[0]
+                user['PartitionKey'] = row[1]
+                user['Supervisor'] = row[2]
+                user['SupervisorGoogleChatID'] = row[3]
+                table_service.insert_entity(TABLE, user)
 
-table_service = TableService(
-    connection_string=settings.CONNECTION_STRING)
-
-
-try:
-    with open('E:/badges.csv', newline='') as csvfile:
-        reader = csv.reader(csvfile, delimiter=",")
-        for row in reader:
-            badge = {}
-            badge['RowKey'] = row[0]
-            badge['PartitionKey'] = row[1]
-            badge['Title'] = row[2]
-            badge['Description'] = row[3]
-            badge['Exp'] = int(row[4])
-            table_service.insert_entity('badges', badge)
-
-    print('GREAT SUCCESS')
-except Exception as e:
-    print(e)
+        print('GREAT SUCCESS')
+    except Exception as e:
+        print(e)
